@@ -1,0 +1,14 @@
+[package]
+name = "nrf52840-dev"
+version = "0.1.0"
+authors = ["WatchDG <baranov@w3m.co>"]
+license = "MIT OR Apache-2.0"
+description = "Universal library for nRF52840 development kit"
+homepage = "https://github.com/WatchDG/rust-nrf52840-dev"
+documentation = "https://docs.rs/nrf52840-dev"
+repository = "https://github.com/WatchDG/rust-nrf52840-dev"
+readme = "README.md"
+edition = "2024"
+exclude = [".trae/**"]
+
+[dependencies]
