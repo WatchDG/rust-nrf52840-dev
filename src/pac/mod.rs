@@ -1,4 +1,5 @@
 pub mod consts;
+pub mod macros;
 pub mod peripheral;
 
 use core::cell::UnsafeCell;

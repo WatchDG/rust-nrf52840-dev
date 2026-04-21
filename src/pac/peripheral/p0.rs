@@ -1,5 +1,5 @@
-use super::super::P0_BASE;
-use super::{
+use crate::pac::P0_BASE;
+use crate::pac::peripheral::{
     P0Detectmode, P0Dir, P0Dirclr, P0Dirset, P0In, P0Latch, P0Out, P0Outclr, P0Outset, P0PinCnf,
 };
 
@@ -31,6 +31,7 @@ impl RegisterBlock {
         }
     }
 }
+
 pub const PTR: *const RegisterBlock = P0_BASE as *const RegisterBlock;
 pub const PTR_MUT: *mut RegisterBlock = P0_BASE as *mut RegisterBlock;
 
