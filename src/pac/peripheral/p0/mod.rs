@@ -1,22 +1,22 @@
+pub mod enums;
+pub mod registers;
+
 use crate::pac::P0_BASE;
-use crate::pac::peripheral::{
-    P0Detectmode, P0Dir, P0Dirclr, P0Dirset, P0In, P0Latch, P0Out, P0Outclr, P0Outset, P0PinCnf,
-};
 
 #[repr(C)]
 pub struct RegisterBlock {
     pub _reserved0: [u8; 1284],
-    pub out: P0Out,
-    pub outset: P0Outset,
-    pub outclr: P0Outclr,
-    pub in_: P0In,
-    pub dir: P0Dir,
-    pub dirset: P0Dirset,
-    pub dirclr: P0Dirclr,
-    pub latch: P0Latch,
-    pub detectmode: P0Detectmode,
+    pub out: registers::P0Out,
+    pub out_set: registers::P0OutSet,
+    pub out_clr: registers::P0OutClr,
+    pub r#in: registers::P0In,
+    pub dir: registers::P0Dir,
+    pub dir_set: registers::P0DirSet,
+    pub dir_clr: registers::P0DirClr,
+    pub latch: registers::P0Latch,
+    pub detectmode: registers::P0DetectMode,
     pub _reserved1: [u8; 472],
-    pub pin_cnf: [P0PinCnf; 32],
+    pub pin_cnf: [registers::P0PinCnf; 32],
 }
 
 impl RegisterBlock {
@@ -34,74 +34,6 @@ impl RegisterBlock {
 
 pub const PTR: *const RegisterBlock = P0_BASE as *const RegisterBlock;
 pub const PTR_MUT: *mut RegisterBlock = P0_BASE as *mut RegisterBlock;
-
-#[repr(u8)]
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-pub enum P0DetectmodeDetectmode {
-    Default = 0,
-    Ldetect = 1,
-}
-impl P0DetectmodeDetectmode {
-    #[inline(always)]
-    pub const fn bits(self) -> u8 {
-        self as u8
-    }
-    #[inline(always)]
-    pub const fn from_bits(v: u8) -> Option<Self> {
-        match v {
-            0 => Some(Self::Default),
-            1 => Some(Self::Ldetect),
-            _ => None,
-        }
-    }
-}
-impl From<P0DetectmodeDetectmode> for u8 {
-    #[inline(always)]
-    fn from(v: P0DetectmodeDetectmode) -> u8 {
-        v.bits()
-    }
-}
-impl core::convert::TryFrom<u8> for P0DetectmodeDetectmode {
-    type Error = ();
-    #[inline(always)]
-    fn try_from(v: u8) -> core::result::Result<Self, ()> {
-        Self::from_bits(v).ok_or(())
-    }
-}
-
-#[repr(u8)]
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-pub enum P0DirPin {
-    Input = 0,
-    Output = 1,
-}
-impl P0DirPin {
-    #[inline(always)]
-    pub const fn bits(self) -> u8 {
-        self as u8
-    }
-    #[inline(always)]
-    pub const fn from_bits(v: u8) -> Option<Self> {
-        match v {
-            0 => Some(Self::Input),
-            1 => Some(Self::Output),
-            _ => None,
-        }
-    }
-}
-impl From<P0DirPin> for u8 {
-    #[inline(always)]
-    fn from(v: P0DirPin) -> u8 {
-        v.bits()
-    }
-}
-impl core::convert::TryFrom<u8> for P0DirPin {
-    type Error = ();
-    #[inline(always)]
-    fn try_from(v: u8) -> core::result::Result<Self, ()> {
-        Self::from_bits(v).ok_or(())
-    }
-}
 
 #[repr(u8)]
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]

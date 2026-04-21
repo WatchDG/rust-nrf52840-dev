@@ -6,46 +6,6 @@ pub mod p0;
 pub mod p1;
 
 #[repr(transparent)]
-pub struct P0Out(RW<u32>);
-impl_rw_register!(P0Out);
-
-#[repr(transparent)]
-pub struct P0Outclr(W1C<u32>);
-impl_w1c_register!(P0Outclr);
-
-#[repr(transparent)]
-pub struct P0Outset(W1S<u32>);
-impl_w1s_register!(P0Outset);
-
-#[repr(transparent)]
-pub struct P0In(RO<u32>);
-impl_ro_register!(P0In);
-
-#[repr(transparent)]
-pub struct P0Dir(RW<u32>);
-impl_rw_register!(P0Dir);
-
-#[repr(transparent)]
-pub struct P0Dirset(W1S<u32>);
-impl_w1s_register!(P0Dirset);
-
-#[repr(transparent)]
-pub struct P0Dirclr(W1C<u32>);
-impl_w1c_register!(P0Dirclr);
-
-#[repr(transparent)]
-pub struct P0Latch(RW<u32>);
-impl_rw_register!(P0Latch);
-
-#[repr(transparent)]
-pub struct P0Detectmode(RW<u32>);
-impl_rw_register!(P0Detectmode);
-
-#[repr(transparent)]
-pub struct P0PinCnf(RW<u32>);
-impl_rw_register!(P0PinCnf);
-
-#[repr(transparent)]
 pub struct P1Out(RW<u32>);
 impl_rw_register!(P1Out);
 
