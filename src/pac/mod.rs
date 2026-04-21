@@ -1,6 +1,6 @@
 pub mod consts;
 pub mod macros;
-pub mod peripheral;
+pub mod peripherals;
 
 use core::cell::UnsafeCell;
 use core::marker::PhantomData;

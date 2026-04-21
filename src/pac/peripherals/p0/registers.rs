@@ -1,4 +1,4 @@
-use crate::pac::peripheral::{RO, RW, W1C, W1S};
+use crate::pac::peripherals::{RO, RW, W1C, W1S};
 use crate::{impl_ro_register, impl_rw_register, impl_w1c_register, impl_w1s_register};
 
 #[repr(transparent)]

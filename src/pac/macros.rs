@@ -77,3 +77,40 @@ macro_rules! impl_w1c_register {
         }
     };
 }
+
+#[macro_export]
+macro_rules! enum_bits {
+    ($name:ident : $type:ty , $($variant:ident = $value:expr),* $(,)?) => {
+        #[repr($type)]
+        #[derive(Copy, Clone, Debug, PartialEq, Eq)]
+        pub enum $name {
+            $($variant = $value),*
+        }
+        impl $name {
+            #[inline(always)]
+            pub const fn bits(self) -> $type {
+                self as $type
+            }
+            #[inline(always)]
+            pub const fn from_bits(v: $type) -> Option<Self> {
+                match v {
+                    $($value => Some(Self::$variant)),*,
+                    _ => None,
+                }
+            }
+        }
+        impl From<$name> for $type {
+            #[inline(always)]
+            fn from(v: $name) -> $type {
+                v.bits()
+            }
+        }
+        impl core::convert::TryFrom<$type> for $name {
+            type Error = ();
+            #[inline(always)]
+            fn try_from(v: $type) -> core::result::Result<Self, ()> {
+                Self::from_bits(v).ok_or(())
+            }
+        }
+    };
+}
